@@ -73,7 +73,8 @@ RSpec.describe User, type: :model do
         @user.last_name = 'abc'
         @user.first_name = 'def'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name is invalid. Input full-width characters.', 'First name is invalid. Input full-width characters.')
+        expect(@user.errors.full_messages).to include('Last name is invalid. Input full-width characters.',
+                                                      'First name is invalid. Input full-width characters.')
       end
 
       it 'お名前カナ(全角)は、名字と名前がそれぞれなければ登録できない' do
@@ -99,7 +100,8 @@ RSpec.describe User, type: :model do
         @user.last_name_kana = 'やまだ'
         @user.first_name_kana = 'たろう'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name kana is invalid. Input full-width katakana characters.', 'First name kana is invalid. Input full-width katakana characters.')
+        expect(@user.errors.full_messages).to include('Last name kana is invalid. Input full-width katakana characters.',
+                                                      'First name kana is invalid. Input full-width katakana characters.')
       end
 
       it '生年月日がなければ登録できない' do
