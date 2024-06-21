@@ -11,6 +11,6 @@ class Item < ApplicationRecord
   validates :item_name, :detail, presence: true
   validates :category_id, :condition_id, :burden_id, :prefecture_id, :delivery_date_id, numericality: { other_than: 1 } 
   with_options presence: true, format: { with:/\A[0-9]+\z/} do
-    validates :place, numericality:{ only_integer: true,greater_than_or_equal_to: 300, less_than_or_equal_to:9_999_999 }
+    validates :price, numericality:{ only_integer: true,greater_than_or_equal_to: 300, less_than_or_equal_to:9_999_999 }
   end
 end
