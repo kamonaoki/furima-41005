@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_many :items
 
   validates :nickname, :birth_date, presence: true
@@ -11,8 +11,8 @@ class User < ApplicationRecord
     # カタカナのみ許可する
     validates :last_name_kana, :first_name_kana,
               format: { with: /\A[ァ-ヶー]+\z/, message: 'is invalid. Input full-width katakana characters.' }
-    # 半角英数字のみ許可する          
-    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i,message: 'is invalid. Input both letters and numbers.' }
-   
+    # 半角英数字のみ許可する
+    validates :password,
+              format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'is invalid. Input both letters and numbers.' }
   end
 end
