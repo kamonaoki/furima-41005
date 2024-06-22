@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_items, only: [:show]
+  before_action :set_items, only: [:show,:edit]
   before_action :move_to_index, except: [:index, :show]
 
   def index
@@ -21,6 +21,11 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+
+  def edit
+  end
+  
 
   private
 
