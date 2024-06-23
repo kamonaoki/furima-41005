@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:index, :create]
 
 def index
   @order_send = OrderSend.new
@@ -14,6 +15,11 @@ def create
   end
 end
 
+private
+
+def set_item
+  @item = Item.find(params[:item_id])
+end
 
 def order_params
   params.require(:order_send).permit(:post_code, :prefecture_id, :city, :street_address, :building_name, :telephone, :order_id, :item_id ).merge(user_id: current_user.id, item_id: params[:item_id], order_id: params[:order_id])
