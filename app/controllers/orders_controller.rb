@@ -6,7 +6,7 @@ def index
 end
 
 def create
-  @order_send = DonationAddress.new(order_params)
+  @order_send = OrderSend.new(order_params)
   if  @order_send.valid?
     @order_send.save
     redirect_to root_path
