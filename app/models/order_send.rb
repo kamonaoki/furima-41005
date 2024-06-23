@@ -8,7 +8,7 @@ class OrderSend
   
   
   validates :prefecture_id, numericality: { other_than: 1 }
-  validates :city, :street_address, presence: true
+  validates :city, :street_address, :order_id, :item_id, :user_id, presence: true
   with_options presence: true do
     validates :post_code,format: { with:  /^\d{3}-\d{4}$/, message: 'エラー' }
     validates :telephone,format: { with:/\A\d{10,11}+\z/, message: 'エラー' }
