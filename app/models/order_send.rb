@@ -13,4 +13,10 @@ class OrderSend
     validates :post_code,format: { with:  /^\d{3}-\d{4}$/, message: 'エラー' }
     validates :telephone,format: { with:/\A\d{10,11}+\z/, message: 'エラー' }
 
+    def save
+      order = Order.create(item_id: item_id, user_id: user_id)
+      # donation_idには、変数donationのidと指定する
+      Send.create(post_code: post_code, prefecture_id: prefecture_id, city: city, street_address: street_address, building_name: building_name, telephone: telephone, order_id: order.id)
+    end
+
 end
