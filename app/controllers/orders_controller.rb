@@ -1,28 +1,27 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
-def index
-  @order_send = OrderSend.new
-end
-
-def create
-  @order_send = OrderSend.new(order_params)
-  if  @order_send.valid?
-    @order_send.save
-    redirect_to root_path
-  else
-    render :index, status: :unprocessable_entity
+  def index
+    @order_address = OrderAddress.new
   end
-end
 
-private
+  def create
+    @order_address = OrderAddress.new(order_params)
+    if @order_address.valid?
+      @order_address.save
+      redirect_to root_path
+    else
+      render :index, status: :unprocessable_entity
+    end
+  end
 
-def set_item
-  @item = Item.find(params[:item_id])
-end
+  private
 
-def order_params
-  params.require(:order_send).permit(:post_code, :prefecture_id, :city, :street_address, :building_name, :telephone, :order_id, :item_id ).merge(user_id: current_user.id, item_id: params[:item_id], order_id: params[:order_id])
-end
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 
+  def order_params
+    params.require(:order_address).permit(:post_code, :prefecture_id, :city, :street_address, :building_name, :telephone).merge(user_id: current_user.id, item_id: params[:item_id])
+  end
 end
