@@ -29,13 +29,13 @@ RSpec.describe OrderAddress, type: :model do
       it '郵便番号は、「3桁ハイフン4桁」の半角文字列でなければ登録できない' do
         @order_address.post_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Post code is invalid")
+        expect(@order_address.errors.full_messages).to include('Post code is invalid')
       end
 
       it '都道府県が空なら登録できない' do
         @order_address.prefecture_id = 1
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@order_address.errors.full_messages).to include('Prefecture must be other than 1')
       end
 
       it '市区町村が空なら登録できない' do
@@ -59,21 +59,20 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号は、10桁以上11桁以内の半角数値でなければ登録できない' do
         @order_address.telephone = '123456'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone is invalid")
+        expect(@order_address.errors.full_messages).to include('Telephone is invalid')
       end
 
       it '電話番号はハイフンが含まれていると登録できない' do
         @order_address.telephone = '090-1234-5678'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone is invalid")
+        expect(@order_address.errors.full_messages).to include('Telephone is invalid')
       end
 
       it '電話番号は12桁以上では登録できない' do
         @order_address.telephone = '123456789123'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone is invalid")
+        expect(@order_address.errors.full_messages).to include('Telephone is invalid')
       end
-      
 
       it 'userが紐付いていないと保存できないこと' do
         @order_address.user_id = nil
@@ -92,7 +91,6 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
-
     end
   end
 end
