@@ -45,9 +45,9 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :send
+- has_one :address
 
-## sends テーブル
+## Addresses テーブル
 
 | Column          | Type       | Options      |
 | ------          | ---------- | -------------|
