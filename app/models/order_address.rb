@@ -4,8 +4,8 @@ class OrderAddress
   
   
   validates :prefecture_id, numericality: { other_than: 1, message: "must be other than 1"}
-  validates :city, :street_address, :item_id, :user_id, :token, presence: true
   with_options presence: true do
+    validates :city, :street_address, :item_id, :user_id, :token
     validates :post_code,format: { with:/\A\d{3}-\d{4}\z/, message: 'is invalid' }
     validates :telephone,format: { with:/\A\d{10,11}+\z/, message: 'is invalid' }
   end
